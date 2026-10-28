@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KUHS MBBS Attendance Tracker</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #000000;
+      color: #f3f4f6;
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-20 relative flex flex-col items-center select-none bg-black">
+  <!-- Container max-w-md matching mobile screen layout -->
+  <main class="w-full max-w-md px-3.5 pt-3 pb-6 space-y-3.5">
+
+    <!-- Top Full-Width Instagram Banner Button (2 Lines in Single Button) -->
+    <a 
+      href="https://www.instagram.com/thnsh__" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="w-full flex flex-col items-center justify-center py-2.5 px-3 rounded-xl bg-gradient-to-r from-red-950 via-[#180507] to-black border border-red-600/60 hover:border-red-400 text-white shadow-[0_0_15px_rgba(239,68,68,0.25)] transition-all transform hover:-translate-y-0.5 active:translate-y-0 group text-center"
+      aria-label="ATTENDANCE TRCKR BY THANSEEH, GMC THRISSUR - connect with instagram for queries"
+    >
+      <!-- Line 1: Main Title in One Line -->
+      <div class="text-[11px] sm:text-xs font-black tracking-wide uppercase text-white group-hover:text-red-300 transition whitespace-nowrap">
+        ATTENDANCE TRCKR BY THANSEEH, GMC THRISSUR
+      </div>
+      <!-- Line 2: Insta Logo with ID and Text -->
+      <div class="flex items-center justify-center gap-1.5 text-[10px] text-red-300/90 font-semibold group-hover:text-white transition mt-1 flex-wrap">
+        <span class="w-4 h-4 rounded bg-gradient-to-tr from-yellow-500 via-rose-600 to-red-600 flex items-center justify-center text-white shadow-[0_0_6px_rgba(239,68,68,0.5)] flex-shrink-0 group-hover:scale-110 transition-transform">
+          <svg class="w-2.5 h-2.5 fill-current" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </span>
+        <span class="text-white font-black tracking-wide">thnsh__</span>
+        <span class="text-red-400">&bull;</span>
+        <span>connect with instagram for queries &rarr;</span>
+      </div>
+    </a>
+
+    <!-- Header (Black & Red) -->
+    <header class="flex items-center justify-between pt-1">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="inline-block text-[10px] font-black uppercase tracking-wider bg-red-950/80 text-red-400 border border-red-600/50 px-2 py-0.5 rounded-full shadow-[0_0_8px_rgba(239,68,68,0.3)]">
+            KUHS &bull; NMC Regulations
+          </span>
+          <p id="current-date-text" class="text-xs font-bold text-red-400 tracking-wide">28 October 2026</p>
+        </div>
+        <h1 class="text-2xl font-black text-white tracking-tight mt-1">Your Attendance</h1>
+        <p class="text-[11px] text-slate-400 mt-0.5">Theory (75%) &bull; Practical (80%) &bull; Clinics (80%)</p>
+      </div>
+      <button 
+        type="button" 
+        id="btn-open-settings" 
+        class="w-10 h-10 rounded-full bg-[#0d0d0d] hover:bg-[#1a0a0c] text-red-400 hover:text-white flex items-center justify-center transition border border-red-900/60 shadow-md shadow-red-950/40"
+        aria-label="Settings"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Overall Aggregate Attendance Summary Card (Black & Red with Neon Accents) -->
+    <section class="bg-[#0a0a0a] border border-red-600/40 rounded-2xl p-4 shadow-[0_0_20px_rgba(239,68,68,0.15)] space-y-3">
+      <div class="flex items-center justify-between">
+        <span class="text-xs font-black uppercase tracking-wider text-slate-300">Total Academic Attendance</span>
+        <span id="overall-percentage" class="text-xl font-black text-red-500 drop-shadow-[0_0_10px_rgba(239,68,68,0.6)]">100%</span>
+      </div>
+
+      <!-- 3-Column Breakdown for Theory, Practical, Clinics with Neon Glows -->
+      <div class="grid grid-cols-3 gap-2 text-center pt-2 border-t border-[#1a1a1a]">
+        <!-- Theory -->
+        <div class="p-2.5 rounded-xl bg-[#050505] border border-[#00f0ff]/30 shadow-inner">
+          <div class="text-[10px] font-black uppercase tracking-wider text-[#00f0ff]">Theory</div>
+          <div id="overall-theory-pct" class="text-base font-black text-white mt-0.5">100%</div>
+          <div id="overall-theory-counts" class="text-[10px] font-bold text-slate-400 mt-0.5">0 / 0</div>
+        </div>
+        <!-- Practical -->
+        <div class="p-2.5 rounded-xl bg-[#050505] border border-red-500/40 shadow-inner">
+          <div class="text-[10px] font-black uppercase tracking-wider text-red-400">Practical</div>
+          <div id="overall-practical-pct" class="text-base font-black text-white mt-0.5">100%</div>
+          <div id="overall-practical-counts" class="text-[10px] font-bold text-slate-400 mt-0.5">0 / 0</div>
+        </div>
+        <!-- Clinics -->
+        <div class="p-2.5 rounded-xl bg-[#050505] border border-[#b026ff]/30 shadow-inner">
+          <div class="text-[10px] font-black uppercase tracking-wider text-[#b026ff]">Clinics</div>
+          <div id="overall-clinics-pct" class="text-base font-black text-white mt-0.5">100%</div>
+          <div id="overall-clinics-counts" class="text-[10px] font-bold text-slate-400 mt-0.5">0 / 0</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Subjects Container -->
+    <section id="subjects-container" class="space-y-4" aria-label="Subject Attendance Cards">
+      <!-- Cards dynamically injected here, or empty state -->
+    </section>
+
+  </main>
+
+  <!-- Floating Action Button (+) with Neon Red Glow -->
+  <button 
+    type="button" 
+    id="btn-add-subject" 
+    class="fixed bottom-6 right-6 md:right-[calc(50%-13rem)] w-14 h-14 rounded-full bg-gradient-to-tr from-red-700 to-red-500 text-white shadow-[0_0_20px_rgba(239,68,68,0.6)] flex items-center justify-center transition-all hover:scale-110 active:scale-95 z-30 focus:outline-none border-2 border-black"
+    aria-label="Add Subject"
+  >
+    <svg class="w-8 h-8 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path>
+    </svg>
+  </button>
+
+  <!-- Add / Edit Subject Modal (Black & Red with Component Toggles) -->
+  <div id="subject-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+    <div class="bg-[#0a0a0a] border border-red-600/50 rounded-2xl w-full max-w-sm p-5 space-y-4 shadow-[0_0_30px_rgba(239,68,68,0.25)] max-h-[92vh] overflow-y-auto">
+      <div class="flex items-center justify-between">
+        <h3 id="modal-title" class="text-base font-black text-white">Add Subject</h3>
+        <button type="button" id="btn-close-modal" class="text-slate-400 hover:text-white p-1 rounded-lg">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <form id="subject-form" class="space-y-3.5">
+        <input type="hidden" id="modal-subject-id" value="">
+        
+        <div>
+          <label for="modal-subject-name" class="block text-[11px] font-black uppercase tracking-wider text-red-400 mb-1">
+            Subject Code / Short Name
+          </label>
+          <input 
+            type="text" 
+            id="modal-subject-name" 
+            required 
+            placeholder="e.g. Anatomy, CM, Surgery, ENT..." 
+            class="w-full bg-black border border-red-900/60 rounded-xl px-3 py-2 text-white font-black text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+          >
+        </div>
+
+        <div>
+          <label for="modal-subject-fullname" class="block text-[11px] font-black uppercase tracking-wider text-red-400 mb-1">
+            Full Subject Details
+          </label>
+          <input 
+            type="text" 
+            id="modal-subject-fullname" 
+            placeholder="e.g. Human Anatomy, Community Medicine..." 
+            class="w-full bg-black border border-red-900/60 rounded-xl px-3 py-2 text-white font-bold text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+          >
+        </div>
+
+        <!-- NEW: Component Selection Buttons (Theory, Practical, Clinics) -->
+        <div>
+          <label class="block text-[11px] font-black uppercase tracking-wider text-red-400 mb-1.5">
+            Components in this Subject (Select what applies)
+          </label>
+          <div class="grid grid-cols-3 gap-1.5">
+            <button 
+              type="button" 
+              id="toggle-comp-theory" 
+              class="comp-toggle py-2 px-1 rounded-xl border border-red-600 bg-red-950/60 text-white font-black text-xs flex flex-col items-center transition"
+            >
+              <span>THEORY</span>
+              <span class="text-[9px] text-red-300">Min 75%</span>
+            </button>
+            <button 
+              type="button" 
+              id="toggle-comp-practical" 
+              class="comp-toggle py-2 px-1 rounded-xl border border-red-600 bg-red-950/60 text-white font-black text-xs flex flex-col items-center transition"
+            >
+              <span>PRACTICAL</span>
+              <span class="text-[9px] text-red-300">Min 80%</span>
+            </button>
+            <button 
+              type="button" 
+              id="toggle-comp-clinics" 
+              class="comp-toggle py-2 px-1 rounded-xl border border-[#222] bg-[#0c0c0c] text-slate-400 font-black text-xs flex flex-col items-center hover:border-red-900 transition"
+            >
+              <span>CLINICS</span>
+              <span class="text-[9px] text-slate-500">Min 80%</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Initial Theory Counters (Conditional) -->
+        <div id="section-theory-inputs" class="p-2.5 rounded-xl bg-[#050505] border border-[#1a1a1a] space-y-1.5">
+          <span class="text-[11px] font-black text-[#00f0ff] uppercase tracking-wider block">Theory Classes (Min 75%)</span>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label for="modal-theory-att" class="text-[10px] text-slate-400 block mb-0.5">Attended</label>
+              <input type="number" id="modal-theory-att" min="0" value="0" class="w-full bg-[#111] border border-[#222] rounded-lg px-2 py-1 text-white font-black text-xs">
+            </div>
+            <div>
+              <label for="modal-theory-miss" class="text-[10px] text-slate-400 block mb-0.5">Missed</label>
+              <input type="number" id="modal-theory-miss" min="0" value="0" class="w-full bg-[#111] border border-red-900/40 rounded-lg px-2 py-1 text-red-400 font-black text-xs">
+            </div>
+          </div>
+        </div>
+
+        <!-- Initial Practical Counters (Conditional) -->
+        <div id="section-practical-inputs" class="p-2.5 rounded-xl bg-[#050505] border border-[#1a1a1a] space-y-1.5">
+          <span class="text-[11px] font-black text-red-400 uppercase tracking-wider block">Practical Labs (Min 80%)</span>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label for="modal-pract-att" class="text-[10px] text-slate-400 block mb-0.5">Attended</label>
+              <input type="number" id="modal-pract-att" min="0" value="0" class="w-full bg-[#111] border border-[#222] rounded-lg px-2 py-1 text-white font-black text-xs">
+            </div>
+            <div>
+              <label for="modal-pract-miss" class="text-[10px] text-slate-400 block mb-0.5">Missed</label>
+              <input type="number" id="modal-pract-miss" min="0" value="0" class="w-full bg-[#111] border border-red-900/40 rounded-lg px-2 py-1 text-red-400 font-black text-xs">
+            </div>
+          </div>
+        </div>
+
+        <!-- Initial Clinics Counters (Conditional) -->
+        <div id="section-clinics-inputs" class="hidden p-2.5 rounded-xl bg-[#050505] border border-[#1a1a1a] space-y-1.5">
+          <span class="text-[11px] font-black text-[#b026ff] uppercase tracking-wider block">Clinical Postings (Min 80%)</span>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label for="modal-clinics-att" class="text-[10px] text-slate-400 block mb-0.5">Attended</label>
+              <input type="number" id="modal-clinics-att" min="0" value="0" class="w-full bg-[#111] border border-[#222] rounded-lg px-2 py-1 text-white font-black text-xs">
+            </div>
+            <div>
+              <label for="modal-clinics-miss" class="text-[10px] text-slate-400 block mb-0.5">Missed</label>
+              <input type="number" id="modal-clinics-miss" min="0" value="0" class="w-full bg-[#111] border border-red-900/40 rounded-lg px-2 py-1 text-red-400 font-black text-xs">
+            </div>
+          </div>
+        </div>
+
+        <!-- 20 Neon Accent Color Options Grid -->
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="text-[11px] font-black uppercase tracking-wider text-slate-400">
+              Subject Neon Color (20 Options)
+            </span>
+            <span id="selected-color-name" class="text-[10px] font-bold capitalize">Neon Cyan</span>
+          </div>
+          <div class="grid grid-cols-10 gap-1.5 p-2 bg-[#050505] rounded-xl border border-[#1a1a1a]" id="color-picker-container">
+            <!-- Dynamically populated 20 neon color swatches -->
+          </div>
+        </div>
+
+        <div class="flex gap-2 pt-2">
+          <button 
+            type="button" 
+            id="btn-cancel-modal" 
+            class="flex-1 py-2.5 rounded-xl border border-[#222] text-slate-300 font-black text-xs hover:bg-[#141414] transition"
+          >
+            Cancel
+          </button>
+          <button 
+            type="submit" 
+            class="flex-1 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-black text-xs shadow-[0_0_15px_rgba(239,68,68,0.5)] transition"
+          >
+            Save Subject
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Settings & Backup Modal -->
+  <div id="settings-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+    <div class="bg-[#0a0a0a] border border-red-600/50 rounded-2xl w-full max-w-sm p-5 space-y-4 shadow-[0_0_30px_rgba(239,68,68,0.25)] max-h-[92vh] overflow-y-auto">
+      <div class="flex items-center justify-between">
+        <h3 class="text-base font-black text-white tracking-wide">Tracker Settings &amp; Backup</h3>
+        <button type="button" id="btn-close-settings" class="text-slate-400 hover:text-white p-1 rounded-lg">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Toast Feedback -->
+      <div id="settings-toast" class="hidden p-2.5 rounded-xl text-xs font-bold text-center transition"></div>
+
+      <div class="space-y-3.5 text-xs text-slate-300">
+        <!-- KUHS Rules Box -->
+        <div class="p-3 bg-[#050505] rounded-xl border border-red-900/50 space-y-1">
+          <div class="font-black text-red-400 uppercase tracking-wider text-[11px]">KUHS MBBS Regulations</div>
+          <p class="text-slate-300 leading-relaxed font-medium text-[11px]">
+            Minimum <strong class="text-white">75% in Theory</strong> and <strong class="text-white">80% in Practical / Clinics</strong> is strictly mandatory for university exam eligibility.
+          </p>
+        </div>
+
+        <!-- Backup & Export Section -->
+        <div class="p-3 bg-[#050505] rounded-xl border border-[#1a1a1a] space-y-2.5">
+          <div class="flex items-center justify-between">
+            <span class="font-black text-white uppercase tracking-wider text-[11px]">Data Backup &amp; Transfer</span>
+            <span class="text-[9px] text-red-400 font-bold bg-red-950/60 px-1.5 py-0.5 rounded border border-red-900/40">Safe Storage</span>
+          </div>
+          <p class="text-[10px] text-slate-400 leading-relaxed">
+            Export a backup of your attendance records to save on your phone, notes, or transfer to another device.
+          </p>
+          <div class="grid grid-cols-2 gap-2">
+            <button 
+              type="button" 
+              id="btn-copy-backup" 
+              class="w-full py-2 px-2.5 bg-[#141414] hover:bg-[#202020] text-red-300 border border-red-900/50 rounded-xl font-bold transition flex items-center justify-center gap-1.5 active:scale-95 text-[11px]"
+            >
+              <svg class="w-3.5 h-3.5 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+              <span>Copy Code</span>
+            </button>
+            <button 
+              type="button" 
+              id="btn-download-backup" 
+              class="w-full py-2 px-2.5 bg-[#141414] hover:bg-[#202020] text-red-300 border border-red-900/50 rounded-xl font-bold transition flex items-center justify-center gap-1.5 active:scale-95 text-[11px]"
+            >
+              <svg class="w-3.5 h-3.5 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+              <span>Save File</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Restore Section -->
+        <div class="p-3 bg-[#050505] rounded-xl border border-[#1a1a1a] space-y-2">
+          <span class="font-black text-white uppercase tracking-wider text-[11px] block">Restore Attendance</span>
+          <textarea 
+            id="restore-input" 
+            rows="2" 
+            placeholder="Paste your copied backup code here to restore..." 
+            class="w-full bg-black border border-[#222] rounded-xl p-2 text-white font-mono text-[10px] focus:outline-none focus:ring-1 focus:ring-red-500"
+          ></textarea>
+          <button 
+            type="button" 
+            id="btn-restore-backup" 
+            class="w-full py-2 px-3 bg-red-950/80 hover:bg-red-900 text-red-200 border border-red-600/50 rounded-xl font-black transition flex items-center justify-center gap-1.5 active:scale-95 text-xs"
+          >
+            <svg class="w-3.5 h-3.5 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+            <span>Restore From Code</span>
+          </button>
+        </div>
+
+        <!-- Share WhatsApp Summary -->
+        <button 
+          type="button" 
+          id="btn-share-summary" 
+          class="w-full py-2.5 px-3 bg-[#111] hover:bg-[#1a0a0c] text-slate-200 hover:text-white rounded-xl font-bold transition flex items-center justify-between border border-[#222] hover:border-red-900/40 text-xs"
+        >
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.997.544 1.83.829 2.796.829 3.182 0 5.767-2.587 5.768-5.766 0-3.181-2.586-5.768-5.768-5.768zm7.348 5.767c-.002 4.053-3.298 7.351-7.351 7.351-1.218 0-2.41-.301-3.468-.871l-3.876 1.016 1.034-3.778c-.628-1.089-.96-2.336-.962-3.718.002-4.052 3.299-7.35 7.352-7.35 4.052.001 7.349 3.298 7.351 7.35z"/></svg>
+            <span>Copy WhatsApp Attendance Summary</span>
+          </div>
+          <span class="text-[10px] text-red-400 font-bold">&rarr;</span>
+        </button>
+
+        <!-- Danger Zone: Clear Data -->
+        <div class="pt-1">
+          <button 
+            type="button" 
+            id="btn-clear-all" 
+            class="w-full py-2.5 px-3 bg-red-950/40 hover:bg-red-900/60 text-red-400 rounded-xl font-bold transition flex items-center justify-between border border-red-600/30 text-xs"
+          >
+            <span>Clear All Subjects &amp; Data</span>
+            <svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 20 Vibrant Neon Colors Palette
+    const NEON_PALETTE = [
+      { id: 'neon-cyan', name: 'Neon Cyan', hex: '#00f0ff' },
+      { id: 'neon-violet', name: 'Neon Violet', hex: '#b026ff' },
+      { id: 'neon-magenta', name: 'Neon Magenta', hex: '#ff00aa' },
+      { id: 'neon-lime', name: 'Neon Lime', hex: '#39ff14' },
+      { id: 'neon-green', name: 'Neon Green', hex: '#00ff66' },
+      { id: 'neon-yellow', name: 'Neon Yellow', hex: '#ffff00' },
+      { id: 'neon-orange', name: 'Neon Orange', hex: '#ff6700' },
+      { id: 'neon-blue', name: 'Neon Blue', hex: '#0088ff' },
+      { id: 'neon-coral', name: 'Neon Coral', hex: '#ff4d6d' },
+      { id: 'neon-red', name: 'Neon Red', hex: '#ff0033' },
+      { id: 'neon-pink', name: 'Neon Pink', hex: '#ff1493' },
+      { id: 'neon-purple', name: 'Neon Purple', hex: '#d000ff' },
+      { id: 'neon-aqua', name: 'Neon Aqua', hex: '#00e5ff' },
+      { id: 'neon-electric', name: 'Neon Electric', hex: '#4d4dff' },
+      { id: 'neon-rose', name: 'Neon Rose', hex: '#ff3366' },
+      { id: 'neon-gold', name: 'Neon Gold', hex: '#ffd700' },
+      { id: 'neon-lavender', name: 'Neon Lavender', hex: '#e0aaff' },
+      { id: 'neon-mint', name: 'Neon Mint', hex: '#00ffb3' },
+      { id: 'neon-crimson', name: 'Neon Crimson', hex: '#ff1744' },
+      { id: 'neon-ice', name: 'Neon Ice', hex: '#90e0ef' }
+    ];
+
+    function getColorTheme(colorKey) {
+      const found = NEON_PALETTE.find(c => c.id === colorKey || c.hex === colorKey);
+      const hex = found ? found.hex : '#00f0ff';
+      return {
+        hex: hex,
+        name: found ? found.name : 'Neon Cyan'
+      };
+    }
+
+    // App State - Starts with 0 subjects (Clean interface)
+    let subjects = [];
+    let selectedModalColor = 'neon-cyan';
+
+    // Component toggles state in modal
+    let modalIncludeTheory = true;
+    let modalIncludePractical = true;
+    let modalIncludeClinics = false;
+
+    function loadSubjects() {
+      try {
+        const stored = localStorage.getItem('kuhs_mbbs_attendance_v7_empty');
+        if (stored) {
+          subjects = JSON.parse(stored);
+        } else {
+          // Empty slate as requested
+          subjects = [];
+          saveSubjects();
+        }
+      } catch (e) {
+        subjects = [];
+      }
+    }
+
+    function saveSubjects() {
+      try {
+        localStorage.setItem('kuhs_mbbs_attendance_v7_empty', JSON.stringify(subjects));
+      } catch (e) {
+        // Sandboxed storage fallback
+      }
+    }
+
+    // Mathematical Calculation Helpers
+    function calcStats(attended, missed, target) {
+      const total = attended + missed;
+      const pct = total === 0 ? 100 : (attended / total) * 100;
+      const targetRatio = target / 100;
+
+      let canSkip = 0;
+      let needToAttend = 0;
+      let statusLabel = '';
+
+      if (total === 0) {
+        statusLabel = 'No classes held';
+      } else if (pct >= target) {
+        canSkip = Math.floor((attended / targetRatio) - total);
+        if (canSkip < 0) canSkip = 0;
+        statusLabel = canSkip === 0 ? "At limit — don't skip" : `Can skip ${canSkip}`;
+      } else {
+        needToAttend = Math.ceil((targetRatio * total - attended) / (1 - targetRatio));
+        if (needToAttend < 0) needToAttend = 0;
+        statusLabel = `Shortage: attend ${needToAttend}`;
+      }
+
+      return {
+        attended,
+        missed,
+        total,
+        pct: Math.round(pct),
+        rawPct: pct,
+        canSkip,
+        needToAttend,
+        statusLabel,
+        isSafe: pct >= target
+      };
+    }
+
+    // Circular Ring Component Helper
+    function createGaugeSVG(pct, rawPct, isSafe, target, label, subColorHex) {
+      const radius = 24;
+      const circumference = 2 * Math.PI * radius;
+      const strokeDashoffset = circumference - (Math.min(100, rawPct) / 100) * circumference;
+      const strokeColor = !isSafe ? '#ff0033' : subColorHex;
+
+      return `
+        <div class="flex flex-col items-center">
+          <div class="relative w-16 h-16 flex items-center justify-center">
+            <svg class="w-16 h-16 transform -rotate-90 drop-shadow-[0_0_6px_${strokeColor}88]" viewBox="0 0 60 60">
+              <circle cx="30" cy="30" r="${radius}" stroke="#141414" stroke-width="5" fill="none"></circle>
+              <circle 
+                cx="30" 
+                cy="30" 
+                r="${radius}" 
+                stroke="${strokeColor}" 
+                stroke-width="5" 
+                fill="none" 
+                stroke-linecap="round"
+                stroke-dasharray="${circumference}" 
+                stroke-dashoffset="${strokeDashoffset}"
+                style="transition: stroke-dashoffset 0.35s ease;"
+              ></circle>
+            </svg>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <span class="text-xs font-black ${isSafe ? 'text-white' : 'text-red-400 drop-shadow-[0_0_4px_rgba(255,0,51,0.8)]'}">${pct}%</span>
+            </div>
+          </div>
+          <span class="text-[11px] font-black text-slate-300 mt-1 uppercase tracking-wider">${label}</span>
+          <span class="text-[9px] font-bold ${isSafe ? 'text-slate-400' : 'text-red-400'}">Min ${target}%</span>
+        </div>
+      `;
+    }
+
+    // Render Function
+    function render() {
+      const container = document.getElementById('subjects-container');
+      container.innerHTML = '';
+
+      let grandTheoryAtt = 0, grandTheoryTot = 0;
+      let grandPractAtt = 0, grandPractTot = 0;
+      let grandClinicsAtt = 0, grandClinicsTot = 0;
+
+      // Handle Empty State
+      if (subjects.length === 0) {
+        container.innerHTML = `
+          <div class="rounded-2xl border-2 border-dashed border-[#222] p-8 text-center space-y-3 bg-[#060606]">
+            <div class="w-12 h-12 rounded-full bg-red-950/40 border border-red-600/30 text-red-400 flex items-center justify-center mx-auto">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+              </svg>
+            </div>
+            <h3 class="text-base font-black text-white tracking-wide">No Subjects Added Yet</h3>
+            <p class="text-xs text-slate-400 max-w-xs mx-auto leading-relaxed">
+              Tap the red <strong class="text-red-400">+</strong> button below to add your first subject. You can choose exactly which components to track (Theory, Practical, Clinics)!
+            </p>
+          </div>
+        `;
+
+        document.getElementById('overall-percentage').textContent = '100%';
+        document.getElementById('overall-theory-pct').textContent = '100%';
+        document.getElementById('overall-theory-counts').textContent = '0 / 0';
+        document.getElementById('overall-practical-pct').textContent = '100%';
+        document.getElementById('overall-practical-counts').textContent = '0 / 0';
+        document.getElementById('overall-clinics-pct').textContent = '100%';
+        document.getElementById('overall-clinics-counts').textContent = '0 / 0';
+        return;
+      }
+
+      subjects.forEach((sub) => {
+        // Defaults if missing
+        const hasT = sub.hasTheory !== false;
+        const hasP = sub.hasPractical !== false;
+        const hasC = sub.hasClinics === true;
+
+        let tStats = null, pStats = null, cStats = null;
+
+        if (hasT) {
+          if (!sub.theory) sub.theory = { attended: 0, missed: 0, target: 75 };
+          tStats = calcStats(sub.theory.attended, sub.theory.missed, 75);
+          grandTheoryAtt += tStats.attended;
+          grandTheoryTot += tStats.total;
+        }
+
+        if (hasP) {
+          if (!sub.practical) sub.practical = { attended: 0, missed: 0, target: 80 };
+          pStats = calcStats(sub.practical.attended, sub.practical.missed, 80);
+          grandPractAtt += pStats.attended;
+          grandPractTot += pStats.total;
+        }
+
+        if (hasC) {
+          if (!sub.clinics) sub.clinics = { attended: 0, missed: 0, target: 80 };
+          cStats = calcStats(sub.clinics.attended, sub.clinics.missed, 80);
+          grandClinicsAtt += cStats.attended;
+          grandClinicsTot += cStats.total;
+        }
+
+        const theme = getColorTheme(sub.color);
+
+        // Build active stepper rows
+        let stepperRowsHTML = '';
+        if (hasT && tStats) {
+          stepperRowsHTML += `
+            <div class="bg-[#050505] rounded-xl p-2.5 border border-[#161616] flex items-center justify-between">
+              <div>
+                <span class="font-black text-slate-200 block tracking-wide">THEORY</span>
+                <span class="text-[10px] text-slate-400">${tStats.attended}/${tStats.total} held</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="flex items-center gap-1">
+                  <span class="text-[10px] font-bold text-slate-400 mr-0.5">Attend</span>
+                  <button type="button" class="btn-step w-6 h-6 rounded-full bg-[#161616] hover:bg-[#222] text-slate-300 border border-[#262626] flex items-center justify-center font-black active:scale-90 transition" data-id="${sub.id}" data-type="theory" data-action="dec-att">&minus;</button>
+                  <span class="w-5 text-center font-black text-white text-xs">${tStats.attended}</span>
+                  <button type="button" class="btn-step w-6 h-6 rounded-full flex items-center justify-center font-black text-black shadow-[0_0_8px_${theme.hex}88] transition active:scale-95" style="background-color: ${theme.hex};" data-id="${sub.id}" data-type="theory" data-action="inc-att">&plus;</button>
+                </div>
+                <div class="flex items-center gap-1">
+                  <span class="text-[10px] font-bold text-slate-400 mr-0.5">Mis</span>
+                  <button type="button" class="btn-step w-6 h-6 rounded-full bg-[#161616] hover:bg-[#222] text-slate-300 border border-[#262626] flex items-center justify-center font-black active:scale-90 transition" data-id="${sub.id}" data-type="theory" data-action="dec-miss">&minus;</button>
+                  <span class="w-5 text-center font-black text-red-400 text-xs">${tStats.missed}</span>
+                  <button type="button" class="btn-step w-6 h-6 rounded-full bg-[#ff0033] hover:bg-red-600 text-white flex items-center justify-center font-black shadow-[0_0_8px_rgba(255,0,51,0.6)] active:scale-95 transition" data-id="${sub.id}" data-type="theory" data-action="inc-miss">&plus;</button>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        if (hasP && pStats) {
+          stepperRowsHTML += `
+            <div class="bg-[#050505] rounded-xl p-2.5 border border-[#161616] flex items-center justify-between">
+              <div>
+                <span class="font-black text-slate-200 block tracking-wide">PRACTICAL</span>
+                <span class="text-[10px] text-slate-400">${pStats.attended}/${pStats.total} held</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="flex items-center gap-1">
+                  <span class="text-[10px] font-bold text-slate-400 mr-0.5">Attend</span>
+                  <button type="button" class="btn-step w-6 h-6 rounded-full bg-[#161616] hover:bg-[#222] text-slate-300 border border-[#262626] flex items-center justify-center font-black active:scale-90 transition" data-id="${sub.id}" data-type="practical" data-action="dec-att">&minus;</button>
+                  <span class="w-5 text-center font-black text-white text-xs">${pStats.attended}</span>
+                  <button type="button" class="btn-step w-6 h-6 rounded-full flex items-center justify-center font-black text-black shadow-[0_0_8px_${theme.hex}88] transition active:scale-95" style="background-color: ${theme.hex};" data-id="${sub.id}" data-type="practical" data-action="inc-att">&plus;</button>
+                </div>
+                <div class="flex items-center gap-1">
+                  <span class="text-[10px] font-bold text-slate-400 mr-0.5">Mis</span>
+                  <button type="button" class="btn-step w-6 h-6 rounded-full bg-[#161616] hover:bg-[#222] text-slate-300 border border-[#262626] flex items-center justify-center font-black active:scale-90 transition" data-id="${sub.id}" data-type="practical" data-action="dec-miss">&minus;</button>
+                  <span class="w-5 text-center font-black text-red-400 text-xs">${pStats.missed}</span>
+                  <button type="button" class="btn-step w-6 h-6 rounded-full bg-[#ff0033] hover:bg-red-600 text-white flex items-center justify-center font-black shadow-[0_0_8px_rgba(255,0,51,0.6)] active:scale-95 transition" data-id="${sub.id}" data-type="practical" data-action="inc-miss">&plus;</button>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        if (hasC && cStats) {
+          stepperRowsHTML += `
+            <div class="bg-[#050505] rounded-xl p-2.5 border border-[#161616] flex items-center justify-between">
+              <div>
+                <span class="font-black text-slate-200 block tracking-wide">CLINICS</span>
+                <span class="text-[10px] text-slate-400">${cStats.attended}/${cStats.total} held</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="flex items-center gap-1">
+                  <span class="text-[10px] font-bold text-slate-400 mr-0.5">Attend</span>
+                  <button type="button" class="btn-step w-6 h-6 rounded-full bg-[#161616] hover:bg-[#222] text-slate-300 border border-[#262626] flex items-center justify-center font-black active:scale-90 transition" data-id="${sub.id}" data-type="clinics" data-action="dec-att">&minus;</button>
+                  <span class="w-5 text-center font-black text-white text-xs">${cStats.attended}</span>
+                  <button type="button" class="btn-step w-6 h-6 rounded-full flex items-center justify-center font-black text-black shadow-[0_0_8px_${theme.hex}88] transition active:scale-95" style="background-color: ${theme.hex};" data-id="${sub.id}" data-type="clinics" data-action="inc-att">&plus;</button>
+                </div>
+                <div class="flex items-center gap-1">
+                  <span class="text-[10px] font-bold text-slate-400 mr-0.5">Mis</span>
+                  <button type="button" class="btn-step w-6 h-6 rounded-full bg-[#161616] hover:bg-[#222] text-slate-300 border border-[#262626] flex items-center justify-center font-black active:scale-90 transition" data-id="${sub.id}" data-type="clinics" data-action="dec-miss">&minus;</button>
+                  <span class="w-5 text-center font-black text-red-400 text-xs">${cStats.missed}</span>
+                  <button type="button" class="btn-step w-6 h-6 rounded-full bg-[#ff0033] hover:bg-red-600 text-white flex items-center justify-center font-black shadow-[0_0_8px_rgba(255,0,51,0.6)] active:scale-95 transition" data-id="${sub.id}" data-type="clinics" data-action="inc-miss">&plus;</button>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        // Active Gauges
+        let activeCount = (hasT ? 1 : 0) + (hasP ? 1 : 0) + (hasC ? 1 : 0);
+        let gridCols = activeCount === 1 ? 'grid-cols-1' : activeCount === 2 ? 'grid-cols-2' : 'grid-cols-3';
+        let gaugesHTML = `
+          <div class="pt-3 border-t border-[#181818] grid ${gridCols} gap-2 text-center justify-center">
+            ${hasT && tStats ? createGaugeSVG(tStats.pct, tStats.rawPct, tStats.isSafe, 75, 'Theory', theme.hex) : ''}
+            ${hasP && pStats ? createGaugeSVG(pStats.pct, pStats.rawPct, pStats.isSafe, 80, 'Practical', theme.hex) : ''}
+            ${hasC && cStats ? createGaugeSVG(cStats.pct, cStats.rawPct, cStats.isSafe, 80, 'Clinics', theme.hex) : ''}
+          </div>
+        `;
+
+        const card = document.createElement('div');
+        card.className = 'bg-[#0a0a0a] rounded-2xl p-4 shadow-lg space-y-3.5 border';
+        card.style.borderColor = theme.hex + '55';
+        card.style.boxShadow = `0 0 15px ${theme.hex}15`;
+
+        card.innerHTML = `
+          <!-- Card Header: Subject Name, Details & Actions -->
+          <div class="flex items-start justify-between pb-2 border-b border-[#181818]">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="w-3.5 h-3.5 rounded-full flex-shrink-0 drop-shadow-[0_0_6px_${theme.hex}]" style="background-color: ${theme.hex};"></span>
+                <h2 class="text-base font-black text-white tracking-wide">${sub.name}</h2>
+              </div>
+              <p class="text-xs text-slate-400 font-medium mt-0.5">${sub.fullName || 'MBBS Subject'}</p>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <button 
+                type="button" 
+                class="btn-edit-sub p-1.5 rounded-lg bg-[#141414] hover:bg-[#202020] text-slate-300 hover:text-white transition border border-[#262626]" 
+                data-id="${sub.id}"
+                aria-label="Edit ${sub.name}"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                </svg>
+              </button>
+              <button 
+                type="button" 
+                class="btn-delete-sub p-1.5 rounded-lg bg-red-950/60 hover:bg-red-900 text-red-400 transition border border-red-600/40" 
+                data-id="${sub.id}"
+                aria-label="Delete ${sub.name}"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Dynamic Active Stepper Rows -->
+          <div class="space-y-2 text-xs">
+            ${stepperRowsHTML}
+          </div>
+
+          <!-- Dynamic Active Circular Gauges -->
+          ${gaugesHTML}
+        `;
+        container.appendChild(card);
+      });
+
+      // Update Overall Summary
+      const grandTotalAtt = grandTheoryAtt + grandPractAtt + grandClinicsAtt;
+      const grandTotalAll = grandTheoryTot + grandPractTot + grandClinicsTot;
+      const grandPct = grandTotalAll === 0 ? 100 : Math.round((grandTotalAtt / grandTotalAll) * 100);
+
+      document.getElementById('overall-percentage').textContent = grandPct + '%';
+      
+      const tPct = grandTheoryTot === 0 ? 100 : Math.round((grandTheoryAtt / grandTheoryTot) * 100);
+      document.getElementById('overall-theory-pct').textContent = tPct + '%';
+      document.getElementById('overall-theory-counts').textContent = `${grandTheoryAtt} / ${grandTheoryTot}`;
+
+      const pPct = grandPractTot === 0 ? 100 : Math.round((grandPractAtt / grandPractTot) * 100);
+      document.getElementById('overall-practical-pct').textContent = pPct + '%';
+      document.getElementById('overall-practical-counts').textContent = `${grandPractAtt} / ${grandPractTot}`;
+
+      const cPct = grandClinicsTot === 0 ? 100 : Math.round((grandClinicsAtt / grandClinicsTot) * 100);
+      document.getElementById('overall-clinics-pct').textContent = cPct + '%';
+      document.getElementById('overall-clinics-counts').textContent = `${grandClinicsAtt} / ${grandClinicsTot}`;
+
+      attachCardListeners();
+    }
+
+    // Attach Event Handlers
+    function attachCardListeners() {
+      // Steppers
+      document.querySelectorAll('.btn-step').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.id;
+          const type = btn.dataset.type; // theory, practical, clinics
+          const action = btn.dataset.action; // inc-att, dec-att, inc-miss, dec-miss
+          const sub = subjects.find(s => s.id === id);
+          if (!sub || !sub[type]) return;
+
+          if (action === 'inc-att') sub[type].attended += 1;
+          if (action === 'dec-att' && sub[type].attended > 0) sub[type].attended -= 1;
+          if (action === 'inc-miss') sub[type].missed += 1;
+          if (action === 'dec-miss' && sub[type].missed > 0) sub[type].missed -= 1;
+
+          saveSubjects();
+          render();
+        });
+      });
+
+      // Delete
+      document.querySelectorAll('.btn-delete-sub').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.id;
+          subjects = subjects.filter(s => s.id !== id);
+          saveSubjects();
+          render();
+        });
+      });
+
+      // Edit
+      document.querySelectorAll('.btn-edit-sub').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.id;
+          const sub = subjects.find(s => s.id === id);
+          if (!sub) return;
+          openModal(sub);
+        });
+      });
+    }
+
+    // Modal Logic
+    const subjectModal = document.getElementById('subject-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalSubjectId = document.getElementById('modal-subject-id');
+    const modalSubjectName = document.getElementById('modal-subject-name');
+    const modalSubjectFullName = document.getElementById('modal-subject-fullname');
+
+    const toggleCompTheory = document.getElementById('toggle-comp-theory');
+    const toggleCompPractical = document.getElementById('toggle-comp-practical');
+    const toggleCompClinics = document.getElementById('toggle-comp-clinics');
+
+    const sectionTheoryInputs = document.getElementById('section-theory-inputs');
+    const sectionPracticalInputs = document.getElementById('section-practical-inputs');
+    const sectionClinicsInputs = document.getElementById('section-clinics-inputs');
+    
+    const modalTheoryAtt = document.getElementById('modal-theory-att');
+    const modalTheoryMiss = document.getElementById('modal-theory-miss');
+    const modalPractAtt = document.getElementById('modal-pract-att');
+    const modalPractMiss = document.getElementById('modal-pract-miss');
+    const modalClinicsAtt = document.getElementById('modal-clinics-att');
+    const modalClinicsMiss = document.getElementById('modal-clinics-miss');
+
+    const colorPickerContainer = document.getElementById('color-picker-container');
+    const selectedColorName = document.getElementById('selected-color-name');
+
+    function updateComponentToggleUI() {
+      // Theory Toggle
+      if (modalIncludeTheory) {
+        toggleCompTheory.className = 'comp-toggle py-2 px-1 rounded-xl border border-red-600 bg-red-950/60 text-white font-black text-xs flex flex-col items-center transition';
+        sectionTheoryInputs.classList.remove('hidden');
+      } else {
+        toggleCompTheory.className = 'comp-toggle py-2 px-1 rounded-xl border border-[#222] bg-[#0c0c0c] text-slate-400 font-black text-xs flex flex-col items-center hover:border-red-900 transition';
+        sectionTheoryInputs.classList.add('hidden');
+      }
+
+      // Practical Toggle
+      if (modalIncludePractical) {
+        toggleCompPractical.className = 'comp-toggle py-2 px-1 rounded-xl border border-red-600 bg-red-950/60 text-white font-black text-xs flex flex-col items-center transition';
+        sectionPracticalInputs.classList.remove('hidden');
+      } else {
+        toggleCompPractical.className = 'comp-toggle py-2 px-1 rounded-xl border border-[#222] bg-[#0c0c0c] text-slate-400 font-black text-xs flex flex-col items-center hover:border-red-900 transition';
+        sectionPracticalInputs.classList.add('hidden');
+      }
+
+      // Clinics Toggle
+      if (modalIncludeClinics) {
+        toggleCompClinics.className = 'comp-toggle py-2 px-1 rounded-xl border border-red-600 bg-red-950/60 text-white font-black text-xs flex flex-col items-center transition';
+        sectionClinicsInputs.classList.remove('hidden');
+      } else {
+        toggleCompClinics.className = 'comp-toggle py-2 px-1 rounded-xl border border-[#222] bg-[#0c0c0c] text-slate-400 font-black text-xs flex flex-col items-center hover:border-red-900 transition';
+        sectionClinicsInputs.classList.add('hidden');
+      }
+    }
+
+    toggleCompTheory.addEventListener('click', () => {
+      // Must keep at least one active
+      if (modalIncludeTheory && !modalIncludePractical && !modalIncludeClinics) return;
+      modalIncludeTheory = !modalIncludeTheory;
+      updateComponentToggleUI();
+    });
+
+    toggleCompPractical.addEventListener('click', () => {
+      if (modalIncludePractical && !modalIncludeTheory && !modalIncludeClinics) return;
+      modalIncludePractical = !modalIncludePractical;
+      updateComponentToggleUI();
+    });
+
+    toggleCompClinics.addEventListener('click', () => {
+      if (modalIncludeClinics && !modalIncludeTheory && !modalIncludePractical) return;
+      modalIncludeClinics = !modalIncludeClinics;
+      updateComponentToggleUI();
+    });
+
+    function initColorPicker() {
+      colorPickerContainer.innerHTML = '';
+      NEON_PALETTE.forEach(c => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'w-6 h-6 rounded-full transition-all flex items-center justify-center flex-shrink-0';
+        btn.style.backgroundColor = c.hex;
+        btn.style.boxShadow = `0 0 6px ${c.hex}88`;
+        btn.dataset.color = c.id;
+        btn.title = c.name;
+        btn.setAttribute('aria-label', c.name);
+        btn.addEventListener('click', () => setModalColor(c.id));
+        colorPickerContainer.appendChild(btn);
+      });
+    }
+
+    function setModalColor(colorId) {
+      selectedModalColor = colorId;
+      const theme = getColorTheme(colorId);
+      selectedColorName.textContent = theme.name;
+      selectedColorName.style.color = theme.hex;
+
+      colorPickerContainer.querySelectorAll('button').forEach(btn => {
+        if (btn.dataset.color === colorId) {
+          btn.className = 'w-6 h-6 rounded-full ring-2 ring-white ring-offset-2 ring-offset-[#0a0a0a] scale-110 transition-all';
+        } else {
+          btn.className = 'w-6 h-6 rounded-full hover:scale-105 opacity-80 hover:opacity-100 transition-all';
+        }
+      });
+    }
+
+    function openModal(sub = null) {
+      if (sub) {
+        modalTitle.textContent = 'Edit Subject';
+        modalSubjectId.value = sub.id;
+        modalSubjectName.value = sub.name;
+        modalSubjectFullName.value = sub.fullName || '';
+        
+        modalIncludeTheory = sub.hasTheory !== false;
+        modalIncludePractical = sub.hasPractical !== false;
+        modalIncludeClinics = sub.hasClinics === true;
+        
+        modalTheoryAtt.value = sub.theory ? sub.theory.attended : 0;
+        modalTheoryMiss.value = sub.theory ? sub.theory.missed : 0;
+        modalPractAtt.value = sub.practical ? sub.practical.attended : 0;
+        modalPractMiss.value = sub.practical ? sub.practical.missed : 0;
+        modalClinicsAtt.value = sub.clinics ? sub.clinics.attended : 0;
+        modalClinicsMiss.value = sub.clinics ? sub.clinics.missed : 0;
+        
+        setModalColor(sub.color || 'neon-cyan');
+      } else {
+        modalTitle.textContent = 'Add MBBS Subject';
+        modalSubjectId.value = '';
+        modalSubjectName.value = '';
+        modalSubjectFullName.value = '';
+
+        // Default new subject has Theory + Practical (or customize)
+        modalIncludeTheory = true;
+        modalIncludePractical = true;
+        modalIncludeClinics = false;
+        
+        modalTheoryAtt.value = 0;
+        modalTheoryMiss.value = 0;
+        modalPractAtt.value = 0;
+        modalPractMiss.value = 0;
+        modalClinicsAtt.value = 0;
+        modalClinicsMiss.value = 0;
+        
+        setModalColor('neon-cyan');
+      }
+
+      updateComponentToggleUI();
+      subjectModal.classList.remove('hidden');
+      subjectModal.classList.add('flex');
+    }
+
+    function closeModal() {
+      subjectModal.classList.add('hidden');
+      subjectModal.classList.remove('flex');
+    }
+
+    document.getElementById('btn-add-subject').addEventListener('click', () => openModal(null));
+    document.getElementById('btn-close-modal').addEventListener('click', closeModal);
+    document.getElementById('btn-cancel-modal').addEventListener('click', closeModal);
+
+    document.getElementById('subject-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = modalSubjectName.value.trim();
+      if (!name) return;
+
+      const fullName = modalSubjectFullName.value.trim();
+      const id = modalSubjectId.value;
+
+      const theoryAtt = parseInt(modalTheoryAtt.value, 10) || 0;
+      const theoryMiss = parseInt(modalTheoryMiss.value, 10) || 0;
+      const practAtt = parseInt(modalPractAtt.value, 10) || 0;
+      const practMiss = parseInt(modalPractMiss.value, 10) || 0;
+      const clinicsAtt = parseInt(modalClinicsAtt.value, 10) || 0;
+      const clinicsMiss = parseInt(modalClinicsMiss.value, 10) || 0;
+
+      if (id) {
+        const sub = subjects.find(s => s.id === id);
+        if (sub) {
+          sub.name = name;
+          sub.fullName = fullName;
+          sub.color = selectedModalColor;
+          sub.hasTheory = modalIncludeTheory;
+          sub.hasPractical = modalIncludePractical;
+          sub.hasClinics = modalIncludeClinics;
+          sub.theory = { attended: theoryAtt, missed: theoryMiss, target: 75 };
+          sub.practical = { attended: practAtt, missed: practMiss, target: 80 };
+          sub.clinics = { attended: clinicsAtt, missed: clinicsMiss, target: 80 };
+        }
+      } else {
+        subjects.push({
+          id: 'sub_' + Date.now(),
+          name: name,
+          fullName: fullName,
+          color: selectedModalColor,
+          hasTheory: modalIncludeTheory,
+          hasPractical: modalIncludePractical,
+          hasClinics: modalIncludeClinics,
+          theory: { attended: theoryAtt, missed: theoryMiss, target: 75 },
+          practical: { attended: practAtt, missed: practMiss, target: 80 },
+          clinics: { attended: clinicsAtt, missed: clinicsMiss, target: 80 }
+        });
+      }
+
+      saveSubjects();
+      render();
+      closeModal();
+    });
+
+    // Settings Modal & Backup / Restore Tools
+    const settingsModal = document.getElementById('settings-modal');
+    const settingsToast = document.getElementById('settings-toast');
+
+    function showToast(msg, isSuccess = true) {
+      settingsToast.textContent = msg;
+      settingsToast.className = isSuccess 
+        ? 'p-2.5 rounded-xl bg-emerald-950/90 border border-emerald-500 text-emerald-200 text-xs font-bold text-center transition block'
+        : 'p-2.5 rounded-xl bg-red-950/90 border border-red-500 text-red-200 text-xs font-bold text-center transition block';
+      setTimeout(() => {
+        settingsToast.classList.add('hidden');
+        settingsToast.classList.remove('block');
+      }, 3500);
+    }
+
+    function copyToClipboard(text, successMsg) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast(successMsg);
+        }).catch(() => {
+          fallbackCopy(text, successMsg);
+        });
+      } else {
+        fallbackCopy(text, successMsg);
+      }
+    }
+
+    function fallbackCopy(text, successMsg) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try {
+        document.execCommand('copy');
+        showToast(successMsg);
+      } catch (err) {
+        showToast('Unable to copy automatically. Please copy manually.', false);
+      }
+      document.body.removeChild(ta);
+    }
+
+    document.getElementById('btn-open-settings').addEventListener('click', () => {
+      settingsToast.classList.add('hidden');
+      settingsToast.classList.remove('block');
+      settingsModal.classList.remove('hidden');
+      settingsModal.classList.add('flex');
+    });
+
+    document.getElementById('btn-close-settings').addEventListener('click', () => {
+      settingsModal.classList.add('hidden');
+      settingsModal.classList.remove('flex');
+    });
+
+    // 1. Copy Backup Code
+    document.getElementById('btn-copy-backup').addEventListener('click', () => {
+      if (subjects.length === 0) {
+        showToast('No subjects to backup yet! Add a subject first.', false);
+        return;
+      }
+      const dataStr = JSON.stringify(subjects);
+      const encoded = btoa(unescape(encodeURIComponent(dataStr)));
+      copyToClipboard(encoded, 'Backup code copied to clipboard! Save it to WhatsApp or Notes.');
+    });
+
+    // 2. Download Backup File (.json)
+    document.getElementById('btn-download-backup').addEventListener('click', () => {
+      if (subjects.length === 0) {
+        showToast('No subjects to export yet! Add a subject first.', false);
+        return;
+      }
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(subjects, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `kuhs_mbbs_attendance_backup_${new Date().toISOString().slice(0,10)}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+      showToast('Backup file (.json) downloaded successfully!');
+    });
+
+    // 3. Restore Attendance from Code
+    document.getElementById('btn-restore-backup').addEventListener('click', () => {
+      const input = document.getElementById('restore-input').value.trim();
+      if (!input) {
+        showToast('Please paste a valid backup code first.', false);
+        return;
+      }
+
+      try {
+        let parsed = null;
+        try {
+          const decoded = decodeURIComponent(escape(atob(input)));
+          parsed = JSON.parse(decoded);
+        } catch (e) {
+          parsed = JSON.parse(input);
+        }
+
+        if (Array.isArray(parsed)) {
+          subjects = parsed;
+          saveSubjects();
+          render();
+          document.getElementById('restore-input').value = '';
+          showToast(`Restored ${subjects.length} subjects successfully!`);
+        } else {
+          showToast('Invalid backup data format.', false);
+        }
+      } catch (err) {
+        showToast('Could not decode backup code. Check and try again.', false);
+      }
+    });
+
+    // 4. Copy WhatsApp Text Summary
+    document.getElementById('btn-share-summary').addEventListener('click', () => {
+      if (subjects.length === 0) {
+        showToast('No subjects to summarize yet!', false);
+        return;
+      }
+
+      let summary = "📊 *KUHS MBBS Attendance Summary*\n";
+      summary += `Date: ${new Date().toLocaleDateString('en-GB')}\n\n`;
+
+      subjects.forEach(sub => {
+        summary += `*${sub.name}* (${sub.fullName || 'MBBS'})\n`;
+        if (sub.hasTheory !== false && sub.theory) {
+          const st = calcStats(sub.theory.attended, sub.theory.missed, 75);
+          summary += `  • Theory: ${st.pct}% (${st.attended}/${st.total}) - ${st.statusLabel}\n`;
+        }
+        if (sub.hasPractical !== false && sub.practical) {
+          const st = calcStats(sub.practical.attended, sub.practical.missed, 80);
+          summary += `  • Practical: ${st.pct}% (${st.attended}/${st.total}) - ${st.statusLabel}\n`;
+        }
+        if (sub.hasClinics === true && sub.clinics) {
+          const st = calcStats(sub.clinics.attended, sub.clinics.missed, 80);
+          summary += `  • Clinics: ${st.pct}% (${st.attended}/${st.total}) - ${st.statusLabel}\n`;
+        }
+        summary += "\n";
+      });
+
+      summary += "Tracking with KUHS MBBS Tracker by Thanseeh, GMC Thrissur";
+      copyToClipboard(summary, 'WhatsApp summary copied to clipboard! Paste it in your chat.');
+    });
+
+    // 5. Clear All Data
+    document.getElementById('btn-clear-all').addEventListener('click', () => {
+      subjects = [];
+      saveSubjects();
+      render();
+      showToast('All subjects cleared.');
+    });
+
+    // Launch
+    initColorPicker();
+    loadSubjects();
+    render();
+  </script>
+</body>
+</html>
