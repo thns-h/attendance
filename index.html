@@ -15,6 +15,14 @@
       color: #f3f4f6;
     }
   </style>
+  <!-- ================================================================= -->
+  <!-- PRIVATE VISITOR ANALYTICS (Only you see stats on your private phone/PC) -->
+  <!-- To activate free private tracking (0 cookie banners, 100% anonymous): -->
+  <!-- 1. Sign up for free at https://www.goatcounter.com                 -->
+  <!-- 2. Replace YOUR_CODE below with your GoatCounter username          -->
+  <!-- Example: data-goatcounter="https://kuhstracker.goatcounter.com/count"  -->
+  <!-- ================================================================= -->
+  <!-- <script data-goatcounter="https://YOUR_CODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script> -->
 </head>
 <body class="min-h-screen pb-20 relative flex flex-col items-center select-none bg-black">
   <!-- Container max-w-md matching mobile screen layout -->
@@ -104,6 +112,52 @@
     <section id="subjects-container" class="space-y-4" aria-label="Subject Attendance Cards">
       <!-- Cards dynamically injected here, or empty state -->
     </section>
+
+    <!-- ============================================================== -->
+    <!-- SPONSOR BANNER (Uses sponsor-image.jpg in the same folder)     -->
+    <!-- Update href with your sponsor's WhatsApp or Instagram link     -->
+        <!-- ============================================================== -->
+    <!-- SPONSOR BANNER (Upload 'sponsor-image.jpg' to your GitHub repo) -->
+    <!-- Update href with your sponsor's WhatsApp or Instagram link     -->
+    <!-- ============================================================== -->
+    <section id="sponsor-banner-section" class="pt-2">
+      <a 
+        href="https://www.instagram.com/thnsh__" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        id="sponsor-link"
+        class="block w-full rounded-2xl overflow-hidden border border-red-900/40 bg-[#0a0a0a] hover:border-red-500/70 transition-all shadow-[0_0_15px_rgba(239,68,68,0.12)] group"
+        aria-label="Sponsor or Partner Promotion Banner"
+      >
+        <div class="w-full aspect-[21/9] sm:aspect-[2.8/1] overflow-hidden flex items-center justify-center bg-[#070707]">
+          <img 
+            id="sponsor-image" 
+            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='340' viewBox='0 0 800 340'><rect width='800' height='340' fill='%23080405'/><rect x='4' y='4' width='792' height='332' fill='none' stroke='%23ef4444' stroke-width='2' stroke-dasharray='6,6'/><text x='50%25' y='46%25' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-weight='900' font-size='22' letter-spacing='2'>SPONSOR BANNER</text><text x='50%25' y='62%25' dominant-baseline='middle' text-anchor='middle' fill='%23ef4444' font-family='sans-serif' font-weight='700' font-size='13'>Upload 'sponsor-image.jpg' in same folder on GitHub</text></svg>" 
+            alt="Sponsor Banner" 
+            class="w-full h-full object-cover transition duration-300 transform group-hover:scale-[1.02]"
+          >
+        </div>
+      </a>
+    </section>
+
+    <!-- Footer: Single Line, Text Only, 50% Transparent, Links to Instagram -->
+    <footer class="pt-3 pb-8 text-center">
+      <a 
+        href="https://www.instagram.com/thnsh__" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="inline-flex items-center justify-center gap-1.5 text-[11px] font-bold text-slate-400 opacity-50 hover:opacity-100 transition-opacity tracking-wider uppercase whitespace-nowrap"
+      >
+        <span>ATTENDANCE TRACKER</span>
+        <span class="text-slate-500">&bull;</span>
+        <span class="w-3.5 h-3.5 rounded bg-gradient-to-tr from-yellow-500 via-rose-600 to-red-600 inline-flex items-center justify-center text-white flex-shrink-0">
+          <svg class="w-2 h-2 fill-current" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </span>
+        <span class="text-white">thnsh__</span>
+      </a>
+    </footer>
 
   </main>
 
@@ -1131,6 +1185,14 @@
       render();
       showToast('All subjects cleared.');
     });
+
+    // Automatically load sponsor-image.jpg from the same folder when uploaded
+    const sponsorImg = document.getElementById('sponsor-image');
+    if (sponsorImg) {
+      const testImg = new Image();
+      testImg.onload = () => { sponsorImg.src = 'sponsor-image.jpg'; };
+      testImg.src = 'sponsor-image.jpg';
+    }
 
     // Launch
     initColorPicker();
